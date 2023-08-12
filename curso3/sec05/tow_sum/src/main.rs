@@ -11,6 +11,6 @@ fn main() {
     assert_eq!(solution::Solution::two_sums(vec![34, 1, 23, 45, 99], 101), vec![]);
 
     let v = vec![1, 2, 3 , 4 ,5];
-    let alvo = 3;
-    solution::Solution::two_sums_hasmap(v, alvo);
+    let alvo = 6;
+    print!("{:?}", solution::Solution::two_sums_hasmap(v, alvo));
 }

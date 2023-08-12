@@ -28,13 +28,23 @@ impl Solution{
         let mut map: HashMap<i32, i32> = HashMap::new();
         let mut result: Vec<i32> = Vec::new();
 
-        println!("v = {:?},, alvo = {}", v, alvo);
+        println!("v = {:?}, alvo = {}", v, alvo);
 
         for i in 0..v.len(){
+
+            if map.contains_key(&(alvo - v[i])){
+                result.push(map[&(alvo - v[i])]);
+                result.push(i as i32);
+                return result;
+            }
+
             map.insert(v[i], i as i32);
             println!("map = {:?}", map);
+
         }
 
-        vec![]
+        print!("result = {:?}", result);
+
+        return result;
     }
 }
