@@ -3,7 +3,8 @@
 #[macro_use]
 extern crate rocket;
 use rocket::response::content;
-use rocket::State;
+use rocket::{State};
+use std::collections::HashMap;
 
 struct Local{
     temperatura: f64,
@@ -32,10 +33,13 @@ fn temperatura(local_state: State<Local>, cidade: String) -> content::Html<Strin
 
 fn main() {
 
-    rocket::ignite().mount("/", routes![index, temperatura])
-        .manage(Local{
-            temperatura: 20.0,
-            cidade: "Sao Paulo".to_string()
-        })
+    let mut local_state = HashMap::<String, Local>::new();
+    local_state.insert("Sao Paulo".to_string(), Local{temperatura: 25.0, cidade: "Sao Paulo".to_string()});
+    local_state.insert("Rio de Janeiro".to_string(), Local{temperatura: 40.0, cidade: "Rio de Janeiro".to_string()});
+    local_state.insert("Belo Horizonte".to_string(), Local{temperatura: 30.0, cidade: "Belo Horizonte".to_string()});
+
+    rocket::ignite()
+        .mount("/", routes![index, temperatura])
+        .manage(local_state)
         .launch();
 }
