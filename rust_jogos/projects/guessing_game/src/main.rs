@@ -88,7 +88,7 @@ fn check_win_condition(
         println!("O número secreto é menor");
         *pontuacao -= 100;
     }
-    if *pontuacao <= 0 {
+    if *pontuacao == 0 {
         return Ok(GameResult::Lose);
     }
     println!("A pontuação foi {}, e p número era {}", pontuacao, numero);
